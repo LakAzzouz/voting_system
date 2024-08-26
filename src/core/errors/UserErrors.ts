@@ -1,0 +1,27 @@
+import { DomainErrors } from "./DomainErrors";
+
+export namespace UserErrors {
+  export class UserNotFound extends DomainErrors {
+    constructor() {
+      super("USER_NOT_FOUND");
+    }
+  }
+  
+  export class AlreadyExist extends DomainErrors {
+    constructor() {
+      super("EMAIL_ALREADY_EXIST");
+    }
+  }
+
+  export class InvalidPassword extends DomainErrors {
+    constructor() {
+      super("INVALID_PASSWORD");
+    }
+  }
+
+  export class EmailNotFound extends DomainErrors {
+    constructor() {
+      super("EMAIL_NOT_FOUND");
+    }
+  }
+}
