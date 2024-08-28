@@ -37,8 +37,8 @@ export class DataBuilders {
       username: props?.username ? props.username : faker.internet.userName(),
       email: props?.email ? props.email : faker.internet.email(),
       password: props?.password ? props.password : "Azerty1234!",
-      createdAt: props?.createdAt ? props.createdAt : faker.date.recent(),
-      updatedAt: props?.updatedAt ? props.updatedAt : new Date(),
+      createdAt: props?.createdAt ? props.createdAt : new Date(1724841222288),
+      updatedAt: props?.updatedAt ? props.updatedAt : new Date(1724841222288)
     });
   }
 
@@ -48,7 +48,7 @@ export class DataBuilders {
       userId: props?.userId ? props.userId : v4(),
       topicId: props?.TopicId ? props.TopicId : v4(),
       answer: props?.answer ? props.answer : true || false,
-      createdAt: props?.createdAt ? props.createdAt : faker.date.recent(),
+      createdAt: props?.createdAt ? props.createdAt : new Date(1724841222288)
     });
   }
 
@@ -58,8 +58,8 @@ export class DataBuilders {
       title: props?.title ? props.title : "title",
       description: props?.description ? props.description : "description",
       votes: props?.votes ? props.votes : [DataBuilders.generateVote()],
-      createdAt: props?.createdAt ? props.createdAt : faker.date.recent(),
-      updatedAt: props?.updatedAt ? props.updatedAt : new Date(),
+      createdAt: props?.createdAt ? props.createdAt : new Date(1724841222288),
+      updatedAt: props?.updatedAt ? props.updatedAt : new Date(1724841222288)
     });
   }
 }
