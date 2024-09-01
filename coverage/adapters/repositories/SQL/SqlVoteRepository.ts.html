@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for adapters/repositories/SQL/SqlUserRepository.ts</title>
+    <title>Code coverage report for adapters/repositories/SQL/SqlVoteRepository.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">adapters/repositories/SQL</a> SqlUserRepository.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">adapters/repositories/SQL</a> SqlVoteRepository.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -207,69 +207,69 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Knex } from "knex";
-import { UserRepositories } from "../../../core/repositories/userRepositories";
-import { SqlUserMapper } from "../mappers/SqlUserMapper";
-import { User } from "../../../core/entities/User";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import knex, { Knex } from "knex";
+import { VoteRepositories } from "../../../core/repositories/voteRepositories";
+import { SqlVoteMapper } from "../mappers/SqlVoteMapper";
+import { Vote } from "../../../core/entities/Vote";
 &nbsp;
-export class SqlUserRepository implements UserRepositories {
+export class SqlVoteRepository implements VoteRepositories {
   constructor(
     private readonly _knex: Knex,
-    private readonly _userMapper: SqlUserMapper
+    private readonly _voteMapper: SqlVoteMapper
   ) {}
 &nbsp;
-  async save(user: User): Promise&lt;void&gt; {
-    const userModel = this._userMapper.fromDomain(user);
+  async save(vote: Vote): Promise&lt;void&gt; {
+    const voteModel = this._voteMapper.fromDomain(vote);
     await this._knex.raw(
-      `INSERT INTO users (id, username, email, password, created_at, updated_at)
-      VALUES (:id, :username, :email, :password, :created_at, :updated_at)`,
+      `
+        INSERT INTO votes (id, user_id, topic_id, answer, created_at)
+        VALUES (:id, :user_id, :topic_id, :answer, :created_at)`,
       {
-        id: userModel.id,
-        username: userModel.username,
-        email: userModel.email,
-        password: userModel.password,
-        created_at: userModel.created_at,
-        updated_at: userModel.updated_at,
+        id: voteModel.id,
+        user_id: voteModel.user_id,
+        topic_id: voteModel.topic_id,
+        answer: voteModel.answer,
+        created_at: voteModel.created_at,
       }
     );
 &nbsp;
     return;
   }
 &nbsp;
-  async getById(id: string): Promise&lt;User | null&gt; {
-    const userModel = await this._knex.raw(
+  async getById(id: string): Promise&lt;Vote | null&gt; {
+    const voteModel = await this._knex.raw(
       `SELECT *
-        FROM users
+        FROM votes
         WHERE id = :id`,
       {
         id: id,
       }
     );
 &nbsp;
-    const user = this._userMapper.toDomain(userModel[0][0]);
+    const vote = this._voteMapper.toDomain(voteModel[0][0]);
 &nbsp;
-    return user;
+    return vote;
   }
 &nbsp;
-  async getByEmail(email: string): Promise&lt;User | null&gt; {
-    const userModel = await this._knex.raw(
+  async getByUserId(userId: string): Promise&lt;Vote | null&gt; {
+    const voteModel = await this._knex.raw(
       `SELECT *
-        FROM users
-        WHERE email = :email`,
+        FROM votes
+        WHERE user_id = :user_id`,
       {
-        email: email,
+        user_id: userId,
       }
     );
 &nbsp;
-    const user = this._userMapper.toDomain(userModel[0][0]);
+    const vote = this._voteMapper.toDomain(voteModel[0][0]);
 &nbsp;
-    return user;
+    return vote;
   }
 &nbsp;
   async delete(id: string): Promise&lt;void&gt; {
     await this._knex.raw(
       `DELETE
-        FROM users
+        FROM votes
         WHERE id = :id`,
       {
         id: id,

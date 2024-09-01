@@ -2,7 +2,6 @@ import { Knex } from "knex";
 import { UserRepositories } from "../../../core/repositories/userRepositories";
 import { SqlUserMapper } from "../mappers/SqlUserMapper";
 import { User } from "../../../core/entities/User";
-import { UserErrors } from "../../../core/errors/UserErrors";
 
 export class SqlUserRepository implements UserRepositories {
   constructor(
@@ -24,23 +23,21 @@ export class SqlUserRepository implements UserRepositories {
         updated_at: userModel.updated_at,
       }
     );
+
+    return;
   }
 
   async getById(id: string): Promise<User | null> {
     const userModel = await this._knex.raw(
       `SELECT *
         FROM users
-        WHERE :id`,
+        WHERE id = :id`,
       {
         id: id,
       }
     );
 
     const user = this._userMapper.toDomain(userModel[0][0]);
-
-    if (!user) {
-      return null;
-    }
 
     return user;
   }
@@ -49,26 +46,22 @@ export class SqlUserRepository implements UserRepositories {
     const userModel = await this._knex.raw(
       `SELECT *
         FROM users
-        WHERE :email`,
+        WHERE email = :email`,
       {
         email: email,
       }
     );
 
-    const user = this._userMapper.toDomain(userModel);
-
-    if (!user) {
-      return null;
-    }
+    const user = this._userMapper.toDomain(userModel[0][0]);
 
     return user;
   }
 
   async delete(id: string): Promise<void> {
     await this._knex.raw(
-      `DELETE *
+      `DELETE
         FROM users
-        WHERE :id`,
+        WHERE id = :id`,
       {
         id: id,
       }

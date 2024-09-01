@@ -33,7 +33,7 @@ type GenerateTopic = {
 export class DataBuilders {
   static generateUser(props?: GenerateUser): User {
     return new User({
-      id: props?.id ? props.id : v4(),
+      id: props?.id ? props.id : "user_id",
       username: props?.username ? props.username : faker.internet.userName(),
       email: props?.email ? props.email : faker.internet.email(),
       password: props?.password ? props.password : "Azerty1234!",
@@ -44,9 +44,9 @@ export class DataBuilders {
 
   static generateVote(props?: GenerateVote): Vote {
     return new Vote({
-      id: props?.id ? props.id : v4(),
-      userId: props?.userId ? props.userId : v4(),
-      topicId: props?.TopicId ? props.TopicId : v4(),
+      id: props?.id ? props.id : "vote_id",
+      userId: props?.userId ? props.userId : "user_id",
+      topicId: props?.TopicId ? props.TopicId : "topic_id",
       answer: props?.answer ? props.answer : true || false,
       createdAt: props?.createdAt ? props.createdAt : new Date(1724841222288)
     });
@@ -54,10 +54,10 @@ export class DataBuilders {
 
   static generateTopic(props?: GenerateTopic): Topic {
     return new Topic({
-      id: props?.id ? props.id : v4(),
+      id: props?.id ? props.id : "topic_id",
       title: props?.title ? props.title : "title",
       description: props?.description ? props.description : "description",
-      votes: props?.votes ? props.votes : [DataBuilders.generateVote()],
+      votes: props?.votes ? props.votes : [DataBuilders.generateVote({id: "vote_id", TopicId: "topic_id", userId: "user_id", answer: true || false, createdAt: new Date(1724841222288)})],
       createdAt: props?.createdAt ? props.createdAt : new Date(1724841222288),
       updatedAt: props?.updatedAt ? props.updatedAt : new Date(1724841222288)
     });
