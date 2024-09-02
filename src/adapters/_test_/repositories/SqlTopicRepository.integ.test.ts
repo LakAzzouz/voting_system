@@ -7,6 +7,7 @@ describe("Integ - sql topic repository", () => {
   let topicMapper: SqlTopicMapper;
   let topicRepository: SqlTopicRepository;
   const topic = DataBuilders.generateTopic();
+  const vote = DataBuilders.generateVote();
 
   beforeAll(async () => {
     topicMapper = new SqlTopicMapper();
@@ -22,10 +23,16 @@ describe("Integ - sql topic repository", () => {
 
     const result = await topicRepository.getById(topic.props.id);
 
+    console.log(result?.props.votes)
+
     expect(result?.props.id).toBeDefined();
     expect(result?.props.title).toEqual(topic.props.title);
     expect(result?.props.description).toEqual(topic.props.description);
-    // expect(result?.props.votes).toEqual(topic.props.votes);
+    // expect(result?.props.votes[0].props.id).toBeDefined();
+    // expect(result?.props.votes[0].props.userId).toBeDefined();
+    // expect(result?.props.votes[0].props.topicId).toBeDefined();
+    // expect(result?.props.votes[0].props.answer).toEqual(vote.props.answer);
+    // expect(result?.props.votes[0].props.createdAt).toBeDefined();
     expect(result?.props.createdAt).toBeDefined();
     expect(result?.props.updatedAt).toBeDefined();
   });
@@ -38,8 +45,11 @@ describe("Integ - sql topic repository", () => {
     expect(result?.props.id).toBeDefined();
     expect(result?.props.title).toEqual(topic.props.title);
     expect(result?.props.description).toEqual(topic.props.description);
-    // expect(result?.props.votes).toEqual(topic.props.votes);
-    expect(result?.props.createdAt).toBeDefined();
+    // expect(result?.props.votes[0].props.id).toBeDefined();
+    // expect(result?.props.votes[0].props.userId).toBeDefined();
+    // expect(result?.props.votes[0].props.topicId).toBeDefined();
+    // expect(result?.props.votes[0].props.answer).toEqual(vote.props.answer);
+    // expect(result?.props.votes[0].props.createdAt).toBeDefined();
     expect(result?.props.updatedAt).toBeDefined();
   });
 

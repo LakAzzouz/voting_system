@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.23% </span>
+                <span class="strong">93.1% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/21</span>
+                <span class='fraction'>27/29</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.23% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/21</span>
+                <span class='fraction'>22/24</span>
             </div>
         
             
@@ -165,7 +165,12 @@
 <a name='L100'></a><a href='#L100'>100</a>
 <a name='L101'></a><a href='#L101'>101</a>
 <a name='L102'></a><a href='#L102'>102</a>
-<a name='L103'></a><a href='#L103'>103</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,6 +186,11 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -191,13 +201,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -211,7 +222,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -280,6 +290,11 @@ export class SqlTopicRepository implements TopicRepositories {
 &nbsp;
   async save(topic: Topic): Promise&lt;void&gt; {
     const topicModel = this._topicMapper.fromDomain(topic);
+    const id = topicModel.votes.map((elm) =&gt; elm.props.id);
+    const user_id = topicModel.votes.map((elm) =&gt; elm.props.userId);
+    const topic_id = topicModel.votes.map((elm) =&gt; elm.props.topicId);
+    const answer = topicModel.votes.map((elm) =&gt; elm.props.answer);
+    const created_at = topicModel.votes.map((elm) =&gt; elm.props.createdAt);
     const tx = await this._knex.transaction();
     try {
       await this._knex.raw(
@@ -293,15 +308,16 @@ export class SqlTopicRepository implements TopicRepositories {
           updated_at: topicModel.updated_at,
         }
       );
-      const votes = topicModel.votes
-        .map(
-          (elm) =&gt;
-            `("${elm.props.id}", "${elm.props.userId}", "${elm.props.topicId}", "${elm.props.answer}", "${elm.props.createdAt}")`
-        )
-        .join(",");
-      await this._knex.raw(
+<span class="cstat-no" title="statement not covered" >      await this._knex.raw(</span>
         `INSERT INTO votes(id, user_id, topic_id, answer, created_at)
-        VALUES ${votes}`
+        VALUES (:id, :user_id, :topic_id, :answer, :created_at)`,
+        {
+          id,
+          user_id,
+          topic_id,
+          answer,
+          created_at,
+        }
       );
 <span class="cstat-no" title="statement not covered" >      await tx.commit();</span>
     } catch (error) {
@@ -316,21 +332,20 @@ export class SqlTopicRepository implements TopicRepositories {
       `SELECT
       topics.id AS id,
       JSON_ARRAYAGG(
-        JSON_OBJECT(
-            'id', votes.id,
-            'user_id', votes.user_id,
-            'answer', votes.answer,
-            'created_at', votes.created_at
-            )
-        ) AS votes,
-        MAX(topics.title) AS title,
-        MAX(topics.description) AS description,
-        MAX(topics.created_at) AS created_at,
-        MAX(topics.updated_at) AS updated_at
-        FROM topics
-        LEFT JOIN votes ON topics.id = votes.topic_id
-        WHERE topics.id = :id
-        GROUP BY topics.id`,
+          JSON_OBJECT(
+              'vote_id', votes.id,
+              'user_id', votes.user_id,
+              'answer', votes.answer
+          )
+      ) AS votes,
+      MAX(topics.title) AS title,
+      MAX(topics.description) AS description,
+      MAX(topics.created_at) AS created_at,
+      MAX(topics.updated_at) AS updated_at
+      FROM topics
+      LEFT JOIN votes ON topics.id = votes.topic_id
+      WHERE topics.id = :id
+      GROUP BY topics.id;`,
       {
         id: id,
       }
@@ -376,7 +391,7 @@ export class SqlTopicRepository implements TopicRepositories {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-09-01T10:47:34.176Z
+                at 2024-09-02T14:14:25.502Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

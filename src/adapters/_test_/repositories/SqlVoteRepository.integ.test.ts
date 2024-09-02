@@ -1,4 +1,3 @@
-import knex from "knex";
 import { DataBuilders } from "../../../core/tools/dataBuilders";
 import { SqlVoteRepository } from "../../repositories/SQL/SqlVoteRepository";
 import { SqlVoteMapper } from "../../repositories/mappers/SqlVoteMapper";
