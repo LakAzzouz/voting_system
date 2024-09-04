@@ -17,7 +17,7 @@ export class UpdateUser implements Usecases<UpdateUserInput, Promise<User>> {
     const user = await this._userRepository.getById(id);
 
     if (!user) {
-      throw new UserErrors.UserNotFound();
+      throw new UserErrors.NotFound();
     }
 
     user.update(newUsername);

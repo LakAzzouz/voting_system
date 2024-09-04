@@ -44,6 +44,6 @@ describe("Unit - get topic by id", () => {
       id: "wrong_id",
     });
 
-    await expect(result).rejects.toThrow(TopicErrors.TopicNotFound);
+    await expect(result).rejects.toThrow(TopicErrors.NotFound);
   });
 });

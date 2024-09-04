@@ -16,7 +16,7 @@ export class GetVoteById implements Usecases<GetVoteByIdInput, Promise<Vote>> {
     const vote = await this._voteRepository.getById(id);
 
     if (!vote) {
-      throw new VoteErrors.VoteNotFound();
+      throw new VoteErrors.NotFound();
     }
 
     return vote;

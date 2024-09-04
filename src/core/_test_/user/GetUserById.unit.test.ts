@@ -40,6 +40,6 @@ describe("Unit - get user by id", () => {
       id: "wrong_id",
     });
 
-    await expect(result).rejects.toThrow(UserErrors.UserNotFound);
+    await expect(result).rejects.toThrow(UserErrors.NotFound);
   });
 });

@@ -15,7 +15,7 @@ export class DeleteVote implements Usecases<DeleteVoteInput, Promise<void>> {
     const vote = await this._voteRepository.getById(id);
 
     if (!vote) {
-      throw new VoteErrors.VoteNotFound();
+      throw new VoteErrors.NotFound();
     }
 
     await this._voteRepository.delete(id);

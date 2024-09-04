@@ -16,7 +16,7 @@ export class GetTopicById implements Usecases<GetTopicByIdInput, Promise<Topic>>
     const topic = await this._topicRepository.getById(id);
 
     if(!topic) {
-        throw new TopicErrors.TopicNotFound();
+        throw new TopicErrors.NotFound();
     }
 
     return topic;

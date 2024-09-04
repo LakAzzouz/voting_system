@@ -16,7 +16,7 @@ export class GetUserById implements Usecases<GetUserByIdInput, Promise<User>> {
     const user = await this._userRepository.getById(id);
 
     if (!user) {
-      throw new UserErrors.UserNotFound();
+      throw new UserErrors.NotFound();
     }
 
     return user;

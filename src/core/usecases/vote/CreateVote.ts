@@ -25,13 +25,13 @@ export class CreateVote implements Usecases<CreateVoteInput, Promise<Vote>> {
     const user = await this._userRepository.getById(userId);
 
     if (!user) {
-      throw new UserErrors.UserNotFound();
+      throw new UserErrors.NotFound();
     }
 
     const topic = await this._topicRepository.getById(topicId);
 
     if (!topic) {
-      throw new TopicErrors.TopicNotFound();
+      throw new TopicErrors.NotFound();
     }
 
     const vote = Vote.create({

@@ -8,7 +8,17 @@ export class SqlTopicMapper implements Mapper<TopicModel, Topic> {
       id: raw.id,
       title: raw.title,
       description: raw.description,
-      votes: raw.votes,
+      votes: raw.votes.map((elm) => {
+        return {
+          props: {
+            id: elm.id,
+            topicId: elm.topic_id,
+            userId: elm.user_id,
+            answer: elm.answer,
+            createdAt: elm.created_at,
+          },
+        };
+      }),
       createdAt: raw.created_at,
       updatedAt: raw.updated_at,
     });
@@ -20,7 +30,15 @@ export class SqlTopicMapper implements Mapper<TopicModel, Topic> {
       id: data.props.id,
       title: data.props.title,
       description: data.props.description,
-      votes: data.props.votes,
+      votes: data.props.votes.map((elm) => {
+        return {
+          id: elm.props.id,
+          topic_id: elm.props.topicId,
+          user_id: elm.props.userId,
+          answer: elm.props.answer,
+          created_at: elm.props.createdAt,
+        };
+      }),
       created_at: data.props.createdAt,
       updated_at: data.props.updatedAt,
     };

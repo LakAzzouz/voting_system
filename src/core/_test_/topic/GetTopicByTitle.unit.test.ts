@@ -44,6 +44,6 @@ describe("Unit - get topic by title", () => {
       title: "wrong_title",
     });
 
-    await expect(result).rejects.toThrow(TopicErrors.TopicNotFound);
+    await expect(result).rejects.toThrow(TopicErrors.NotFound);
   });
 });

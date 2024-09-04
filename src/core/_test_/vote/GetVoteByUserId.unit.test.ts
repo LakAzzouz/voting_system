@@ -39,6 +39,6 @@ describe("Unit - get vote by user id", () => {
       userId: "wrong_id",
     });
 
-    await expect(result).rejects.toThrow(VoteErrors.VoteNotFound);
+    await expect(result).rejects.toThrow(VoteErrors.NotFound);
   });
 });

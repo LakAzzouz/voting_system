@@ -1,10 +1,10 @@
-import { Vote } from "../../../core/entities/Vote";
+import { VoteModel } from "./VoteModel";
 
 export interface TopicModel {
   id: string;
   title: string;
   description: string;
-  votes: Vote[];
+  votes: VoteModel[];
   created_at: Date;
   updated_at?: Date;
 }

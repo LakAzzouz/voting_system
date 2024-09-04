@@ -1,3 +1,5 @@
+USE systeme_de_vote
+
 CREATE TABLE topics (
     `id` VARCHAR(36) PRIMARY KEY NOT NULL,
     title VARCHAR(36) NOT NULL,

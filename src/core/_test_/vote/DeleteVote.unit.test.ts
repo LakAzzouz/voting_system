@@ -39,6 +39,6 @@ describe("Unit - delete vote", () => {
 
     voteDb.get(vote.props.id);
 
-    await expect(result).rejects.toThrow(VoteErrors.VoteNotFound);
+    await expect(result).rejects.toThrow(VoteErrors.NotFound);
   });
 });

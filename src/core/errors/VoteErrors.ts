@@ -1,7 +1,7 @@
 import { DomainErrors } from "./DomainErrors";
 
 export namespace VoteErrors {
-  export class VoteNotFound extends DomainErrors {
+  export class NotFound extends DomainErrors {
     constructor() {
       super("VOTE_NOT_FOUND");
     }

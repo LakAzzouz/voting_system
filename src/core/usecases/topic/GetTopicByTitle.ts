@@ -16,7 +16,7 @@ export class GetTopicByTitle implements Usecases<GetTopicByTitleInput, Promise<T
     const topic = await this._topicRepository.getByTitle(title);
 
     if(!topic) {
-        throw new TopicErrors.TopicNotFound();
+        throw new TopicErrors.NotFound();
     }
 
     return topic;

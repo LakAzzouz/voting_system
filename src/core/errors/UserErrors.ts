@@ -1,7 +1,7 @@
 import { DomainErrors } from "./DomainErrors";
 
 export namespace UserErrors {
-  export class UserNotFound extends DomainErrors {
+  export class NotFound extends DomainErrors {
     constructor() {
       super("USER_NOT_FOUND");
     }

@@ -16,7 +16,7 @@ type GenerateUser = {
 type GenerateVote = {
   id?: string;
   userId?: string;
-  TopicId?: string;
+  topicId?: string;
   answer?: boolean;
   createdAt?: Date;
 };
@@ -46,7 +46,7 @@ export class DataBuilders {
     return new Vote({
       id: props?.id ? props.id : "vote_id",
       userId: props?.userId ? props.userId : "user_id",
-      topicId: props?.TopicId ? props.TopicId : "topic_id",
+      topicId: props?.topicId ? props.topicId : "topic_id",
       answer: props?.answer ? props.answer : true || false,
       createdAt: props?.createdAt ? props.createdAt : new Date(1724841222288)
     });
@@ -57,7 +57,13 @@ export class DataBuilders {
       id: props?.id ? props.id : "topic_id",
       title: props?.title ? props.title : "title",
       description: props?.description ? props.description : "description",
-      votes: props?.votes ? props.votes : [DataBuilders.generateVote({id: "vote_id", TopicId: "topic_id", userId: "user_id", answer: true || false, createdAt: new Date(1724841222288)})],
+      votes: props?.votes ? props.votes : [new Vote({
+        id: "vote_id",
+        userId: "user_id",
+        topicId: "topic_id",
+        answer: true || false,
+        createdAt: new Date(1724841222288)
+      })],
       createdAt: props?.createdAt ? props.createdAt : new Date(1724841222288),
       updatedAt: props?.updatedAt ? props.updatedAt : new Date(1724841222288)
     });

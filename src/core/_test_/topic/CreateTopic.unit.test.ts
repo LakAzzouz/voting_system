@@ -56,6 +56,6 @@ describe("Unit - create topic", () => {
       votes: [vote],
     });
 
-    await expect(result).rejects.toThrow(VoteErrors.VoteNotFound);
+    await expect(result).rejects.toThrow(VoteErrors.NotFound);
   })
 });

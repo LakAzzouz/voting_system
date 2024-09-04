@@ -1,4 +1,3 @@
-import { Topic } from "../../entities/Topic";
 import { TopicErrors } from "../../errors/TopicErrors";
 import { TopicRepositories } from "../../repositories/topicRepositories";
 import { Usecases } from "../useCase";
@@ -16,7 +15,7 @@ export class DeleteTopic implements Usecases<DeleteTopicInput, Promise<void>> {
     const topic = await this._topicRepository.getById(id);
 
     if (!topic) {
-      throw new TopicErrors.TopicNotFound();
+      throw new TopicErrors.NotFound();
     }
 
     await this._topicRepository.delete(id);

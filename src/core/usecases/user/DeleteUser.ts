@@ -15,7 +15,7 @@ export class DeleteUser implements Usecases<DeleteUserInput, Promise<void>> {
     const user = await this._userRepository.getById(id);
 
     if (!user) {
-      throw new UserErrors.UserNotFound();
+      throw new UserErrors.NotFound();
     }
 
     await this._userRepository.delete(id);

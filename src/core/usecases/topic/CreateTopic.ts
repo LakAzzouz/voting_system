@@ -24,7 +24,7 @@ export class CreateTopic implements Usecases<CreateTopicInput, Promise<Topic>> {
     const vote = await this._voteRepository.getById(voteId);
 
     if (!vote) {
-      throw new VoteErrors.VoteNotFound();
+      throw new VoteErrors.NotFound();
     }
 
     const topic = Topic.create({

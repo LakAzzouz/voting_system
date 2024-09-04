@@ -42,6 +42,6 @@ describe("Unit - update user", () => {
       newUsername: user.props.username,
     });
 
-    await expect(result).rejects.toThrow(UserErrors.UserNotFound);
+    await expect(result).rejects.toThrow(UserErrors.NotFound);
   });
 });

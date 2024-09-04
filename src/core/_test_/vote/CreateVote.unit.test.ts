@@ -27,7 +27,7 @@ describe("Unit - create vote", () => {
   const vote = DataBuilders.generateVote({
     id: "vote_id",
     userId: "user_id",
-    TopicId: "topic_id",
+    topicId: "topic_id",
     answer: false,
     createdAt: new Date()
   });
@@ -81,7 +81,7 @@ describe("Unit - create vote", () => {
       answer: vote.props.answer,
     });
 
-    await expect(result).rejects.toThrow(UserErrors.UserNotFound);
+    await expect(result).rejects.toThrow(UserErrors.NotFound);
   });
 
   it("Should throw an error because topic is not found", async () => {
@@ -94,6 +94,6 @@ describe("Unit - create vote", () => {
       answer: vote.props.answer,
     });
 
-    await expect(result).rejects.toThrow(TopicErrors.TopicNotFound);
+    await expect(result).rejects.toThrow(TopicErrors.NotFound);
   });
 });
