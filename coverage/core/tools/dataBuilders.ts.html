@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">43.39% </span>
+                <span class="strong">97.16% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>46/106</span>
+                <span class='fraction'>103/106</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -135,10 +135,10 @@
 <a name='L70'></a><a href='#L70'>70</a>
 <a name='L71'></a><a href='#L71'>71</a>
 <a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -166,20 +166,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -189,7 +178,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -238,8 +238,8 @@ type GenerateTopic = {
 };
 &nbsp;
 export class DataBuilders {
-<span class="fstat-no" title="function not covered" >  static </span>generateUser(props?: GenerateUser): User {
-<span class="cstat-no" title="statement not covered" >    return new User({</span>
+  static generateUser(props?: GenerateUser): User {
+    return new User({
       id: props?.id ? props.id : "user_id",
       username: props?.username ? props.username : faker.internet.userName(),
       email: props?.email ? props.email : faker.internet.email(),
@@ -251,28 +251,28 @@ export class DataBuilders {
 &nbsp;
   static generateVote(props?: GenerateVote): Vote {
     return new Vote({
-      id: <span class="branch-1 cbranch-no" title="branch not covered" >props?.id </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.id </span>: "vote_id",
-      userId: <span class="branch-1 cbranch-no" title="branch not covered" >props?.userId </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.userId </span>: "user_id",
-      topicId: <span class="branch-1 cbranch-no" title="branch not covered" >props?.topicId </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.topicId </span>: "topic_id",
-      answer: <span class="branch-1 cbranch-no" title="branch not covered" >props?.answer </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.answer </span>: true || <span class="branch-1 cbranch-no" title="branch not covered" >false,</span>
-      createdAt: <span class="branch-1 cbranch-no" title="branch not covered" >props?.createdAt </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.createdAt </span>: new Date(1724841222288)
+      id: props?.id ? props.id : "vote_id",
+      userId: props?.userId ? props.userId : "user_id",
+      topicId: props?.topicId ? props.topicId : "topic_id",
+      answer: props?.answer ? <span class="branch-0 cbranch-no" title="branch not covered" >props.answer </span>: true || <span class="branch-1 cbranch-no" title="branch not covered" >false,</span>
+      createdAt: props?.createdAt ? props.createdAt : new Date(1724841222288)
     });
   }
 &nbsp;
   static generateTopic(props?: GenerateTopic): Topic {
     return new Topic({
-      id: <span class="branch-1 cbranch-no" title="branch not covered" >props?.id </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.id </span>: "topic_id",
-      title: <span class="branch-1 cbranch-no" title="branch not covered" >props?.title </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.title </span>: "title",
-      description: <span class="branch-1 cbranch-no" title="branch not covered" >props?.description </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.description </span>: "description",
-      votes: <span class="branch-1 cbranch-no" title="branch not covered" >props?.votes </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.votes </span>: [new Vote({
+      id: props?.id ? props.id : "topic_id",
+      title: props?.title ? props.title : "title",
+      description: props?.description ? props.description : "description",
+      votes: props?.votes ? props.votes : [new Vote({
         id: "vote_id",
         userId: "user_id",
         topicId: "topic_id",
         answer: true || <span class="branch-1 cbranch-no" title="branch not covered" >false,</span>
         createdAt: new Date(1724841222288)
       })],
-      createdAt: <span class="branch-1 cbranch-no" title="branch not covered" >props?.createdAt </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.createdAt </span>: new Date(1724841222288),
-      updatedAt: <span class="branch-1 cbranch-no" title="branch not covered" >props?.updatedAt </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.updatedAt </span>: new Date(1724841222288)
+      createdAt: props?.createdAt ? props.createdAt : new Date(1724841222288),
+      updatedAt: props?.updatedAt ? props.updatedAt : new Date(1724841222288)
     });
   }
 }
@@ -283,7 +283,7 @@ export class DataBuilders {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-09-04T12:31:05.479Z
+                at 2024-09-12T10:33:49.563Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

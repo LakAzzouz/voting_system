@@ -28,7 +28,7 @@ export class SqlTopicRepository implements TopicRepositories {
       );
       for (const vote of votes)
         await this._knex.raw(
-        `INSERT INTO votes(id, user_id, topic_id, answer, created_at)
+          `INSERT INTO votes(id, user_id, topic_id, answer, created_at)
         VALUES (:id, :user_id, :topic_id, :answer, :created_at)`,
           {
             id: vote.id,
@@ -56,26 +56,20 @@ export class SqlTopicRepository implements TopicRepositories {
           'user_id', votes.user_id,
           'answer', votes.answer,
           'created_at', votes.created_at
-        )
-      ) AS votes,
-      MAX(topics.title) AS title,
-      MAX(topics.description) AS description,
-      MAX(topics.created_at) AS created_at,
-      MAX(topics.updated_at) AS updated_at
-      FROM topics
-      LEFT JOIN votes ON topics.id = votes.topic_id
-      WHERE topics.id = 'topic_id'
-      GROUP BY topics.id`,
-      {
-        id: id,
-      }
+          )
+          ) AS votes,
+          MAX(topics.title) AS title,
+          MAX(topics.description) AS description,
+          MAX(topics.created_at) AS created_at,
+          MAX(topics.updated_at) AS updated_at
+          FROM topics
+          LEFT JOIN votes ON topics.id = votes.topic_id
+          WHERE topics.id = ?
+          GROUP BY topics.id`,
+          [id]
     );
 
     const rawTopic = topicModel[0][0];
-
-    if (!rawTopic) {
-      throw new TopicErrors.NotFound();
-    }
 
     if (typeof rawTopic.votes === "string") {
       rawTopic.votes = JSON.parse(rawTopic.votes);
@@ -88,15 +82,34 @@ export class SqlTopicRepository implements TopicRepositories {
 
   async getByTitle(title: string): Promise<Topic | null> {
     const topicModel = await this._knex.raw(
-      `SELECT *
-        FROM topics
-        WHERE title = :title`,
-      {
-        title: title,
-      }
+      `SELECT
+      topics.id AS id,
+      JSON_ARRAYAGG(
+        JSON_OBJECT(
+          'id', votes.id,
+          'user_id', votes.user_id,
+          'answer', votes.answer,
+          'created_at', votes.created_at
+          )
+          ) AS votes,
+          MAX(topics.title) AS title,
+          MAX(topics.description) AS description,
+          MAX(topics.created_at) AS created_at,
+          MAX(topics.updated_at) AS updated_at
+          FROM topics
+          LEFT JOIN votes ON topics.id = votes.topic_id
+          WHERE topics.title = ?
+          GROUP BY topics.id`,
+          [title]
     );
 
-    const topic = this._topicMapper.toDomain(topicModel[0][0]);
+    const rawTopic = topicModel[0][0];
+
+    if (typeof rawTopic.votes === "string") {
+      rawTopic.votes = JSON.parse(rawTopic.votes);
+    }
+
+    const topic = this._topicMapper.toDomain(rawTopic);
 
     return topic;
   }
