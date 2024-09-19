@@ -2,7 +2,6 @@ import { Knex } from "knex";
 import { TopicRepositories } from "../../../core/repositories/topicRepositories";
 import { SqlTopicMapper } from "../mappers/SqlTopicMapper";
 import { Topic } from "../../../core/entities/Topic";
-import { TopicErrors } from "../../../core/errors/TopicErrors";
 
 export class SqlTopicRepository implements TopicRepositories {
   constructor(

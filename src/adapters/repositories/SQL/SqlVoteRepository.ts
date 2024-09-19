@@ -1,4 +1,4 @@
-import knex, { Knex } from "knex";
+import { Knex } from "knex";
 import { VoteRepositories } from "../../../core/repositories/voteRepositories";
 import { SqlVoteMapper } from "../mappers/SqlVoteMapper";
 import { Vote } from "../../../core/entities/Vote";
