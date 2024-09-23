@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/8</span>
+                <span class='fraction'>6/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">43.39% </span>
+                <span class="strong">22.64% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>46/106</span>
+                <span class='fraction'>24/106</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>1/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/8</span>
+                <span class='fraction'>6/8</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -168,6 +168,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -178,18 +189,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -238,41 +238,41 @@ type GenerateTopic = {
 };
 &nbsp;
 export class DataBuilders {
-<span class="fstat-no" title="function not covered" >  static </span>generateUser(props?: GenerateUser): User {
-<span class="cstat-no" title="statement not covered" >    return new User({</span>
-      id: props?.id ? props.id : "user_id",
-      username: props?.username ? props.username : faker.internet.userName(),
-      email: props?.email ? props.email : faker.internet.email(),
-      password: props?.password ? props.password : "Azerty1234!",
-      createdAt: props?.createdAt ? props.createdAt : new Date(1724841222288),
-      updatedAt: props?.updatedAt ? props.updatedAt : new Date(1724841222288)
+  static generateUser(props?: GenerateUser): User {
+    return new User({
+      id: <span class="branch-1 cbranch-no" title="branch not covered" >props?.id </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.id </span>: "user_id",
+      username: <span class="branch-1 cbranch-no" title="branch not covered" >props?.username </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.username </span>: faker.internet.userName(),
+      email: <span class="branch-1 cbranch-no" title="branch not covered" >props?.email </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.email </span>: faker.internet.email(),
+      password: <span class="branch-1 cbranch-no" title="branch not covered" >props?.password </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.password </span>: "Azerty1234!",
+      createdAt: <span class="branch-1 cbranch-no" title="branch not covered" >props?.createdAt </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.createdAt </span>: new Date(1724841222288),
+      updatedAt: <span class="branch-1 cbranch-no" title="branch not covered" >props?.updatedAt </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.updatedAt </span>: new Date(1724841222288)
     });
   }
 &nbsp;
-  static generateVote(props?: GenerateVote): Vote {
-    return new Vote({
-      id: <span class="branch-1 cbranch-no" title="branch not covered" >props?.id </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.id </span>: "vote_id",
-      userId: <span class="branch-1 cbranch-no" title="branch not covered" >props?.userId </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.userId </span>: "user_id",
-      topicId: <span class="branch-1 cbranch-no" title="branch not covered" >props?.topicId </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.topicId </span>: "topic_id",
-      answer: <span class="branch-1 cbranch-no" title="branch not covered" >props?.answer </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.answer </span>: true || <span class="branch-1 cbranch-no" title="branch not covered" >false,</span>
-      createdAt: <span class="branch-1 cbranch-no" title="branch not covered" >props?.createdAt </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.createdAt </span>: new Date(1724841222288)
+<span class="fstat-no" title="function not covered" >  static </span>generateVote(props?: GenerateVote): Vote {
+<span class="cstat-no" title="statement not covered" >    return new Vote({</span>
+      id: props?.id ? props.id : "vote_id",
+      userId: props?.userId ? props.userId : "user_id",
+      topicId: props?.topicId ? props.topicId : "topic_id",
+      answer: props?.answer ? props.answer : true || false,
+      createdAt: props?.createdAt ? props.createdAt : new Date(1724841222288)
     });
   }
 &nbsp;
-  static generateTopic(props?: GenerateTopic): Topic {
-    return new Topic({
-      id: <span class="branch-1 cbranch-no" title="branch not covered" >props?.id </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.id </span>: "topic_id",
-      title: <span class="branch-1 cbranch-no" title="branch not covered" >props?.title </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.title </span>: "title",
-      description: <span class="branch-1 cbranch-no" title="branch not covered" >props?.description </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.description </span>: "description",
-      votes: <span class="branch-1 cbranch-no" title="branch not covered" >props?.votes </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.votes </span>: [new Vote({
+<span class="fstat-no" title="function not covered" >  static </span>generateTopic(props?: GenerateTopic): Topic {
+<span class="cstat-no" title="statement not covered" >    return new Topic({</span>
+      id: props?.id ? props.id : "topic_id",
+      title: props?.title ? props.title : "title",
+      description: props?.description ? props.description : "description",
+      votes: props?.votes ? props.votes : [new Vote({
         id: "vote_id",
         userId: "user_id",
         topicId: "topic_id",
-        answer: true || <span class="branch-1 cbranch-no" title="branch not covered" >false,</span>
+        answer: true || false,
         createdAt: new Date(1724841222288)
       })],
-      createdAt: <span class="branch-1 cbranch-no" title="branch not covered" >props?.createdAt </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.createdAt </span>: new Date(1724841222288),
-      updatedAt: <span class="branch-1 cbranch-no" title="branch not covered" >props?.updatedAt </span>? <span class="branch-0 cbranch-no" title="branch not covered" >props.updatedAt </span>: new Date(1724841222288)
+      createdAt: props?.createdAt ? props.createdAt : new Date(1724841222288),
+      updatedAt: props?.updatedAt ? props.updatedAt : new Date(1724841222288)
     });
   }
 }
@@ -283,7 +283,7 @@ export class DataBuilders {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-09-19T09:11:00.973Z
+                at 2024-09-23T12:49:10.032Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

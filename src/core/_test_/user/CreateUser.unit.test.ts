@@ -35,6 +35,16 @@ describe("Unit - create user", () => {
     expect(result.props.updatedAt).toBeDefined();
   });
 
+  it("Should throw an error because email is not valid", async () => {
+    const result = createUser.execute({
+      username: user.props.username,
+      email: "email_not_valid",
+      password: user.props.password
+    });
+
+    await expect(result).rejects.toThrow(UserErrors.InvalidEmail);
+  })
+
   it("Should throw an error because password is not valid", async () => {
     const result = createUser.execute({
       username: user.props.username,

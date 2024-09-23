@@ -6,7 +6,7 @@ export namespace UserErrors {
       super("USER_NOT_FOUND");
     }
   }
-  
+
   export class AlreadyExist extends DomainErrors {
     constructor() {
       super("EMAIL_ALREADY_EXIST");
@@ -16,6 +16,12 @@ export namespace UserErrors {
   export class InvalidPassword extends DomainErrors {
     constructor() {
       super("INVALID_PASSWORD");
+    }
+  }
+
+  export class InvalidEmail extends DomainErrors {
+    constructor() {
+      super("INVALID_EMAIL");
     }
   }
 

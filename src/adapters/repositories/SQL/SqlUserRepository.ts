@@ -30,8 +30,8 @@ export class SqlUserRepository implements UserRepositories {
   async getById(id: string): Promise<User | null> {
     const userModel = await this._knex.raw(
       `SELECT *
-        FROM users
-        WHERE id = :id`,
+      FROM users
+      WHERE id = :id`,
       {
         id: id,
       }
@@ -45,8 +45,8 @@ export class SqlUserRepository implements UserRepositories {
   async getByEmail(email: string): Promise<User | null> {
     const userModel = await this._knex.raw(
       `SELECT *
-        FROM users
-        WHERE email = :email`,
+      FROM users
+      WHERE email = :email`,
       {
         email: email,
       }

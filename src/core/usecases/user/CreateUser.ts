@@ -2,6 +2,7 @@ import { User } from "../../entities/User";
 import { UserErrors } from "../../errors/UserErrors";
 import { PasswordGateway } from "../../gateways/PasswordGateways";
 import { UserRepositories } from "../../repositories/userRepositories";
+import { Email } from "../../valuesObject/emailValidated";
 import { Password } from "../../valuesObject/passwordValidated";
 import { Usecases } from "../useCase";
 
@@ -20,9 +21,11 @@ export class CreateUser implements Usecases<CreateUserInput, Promise<User>> {
   async execute(input: CreateUserInput): Promise<User> {
     const { username, email, password } = input;
 
-    const emailAlreadyExist = await this._userRepository.getByEmail(email);
+    const emailValidated = Email.validate(email);
 
-    if (emailAlreadyExist) {
+    const userAlreadyExist = await this._userRepository.getByEmail(emailValidated);
+
+    if (userAlreadyExist) {
       throw new UserErrors.AlreadyExist();
     }
 
