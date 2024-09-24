@@ -31,12 +31,12 @@ export class CreateUser implements Usecases<CreateUserInput, Promise<User>> {
 
     const passwordValidated = Password.validate(password);
 
-    const hachedPassword = this._passwordGateway.hashPassword(passwordValidated);
+    const hashedPassword = this._passwordGateway.hashPassword(passwordValidated);
 
     const user = User.create({
       username,
       email,
-      password: hachedPassword,
+      password: hashedPassword,
     });
 
     await this._userRepository.save(user);

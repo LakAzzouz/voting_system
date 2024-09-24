@@ -86,8 +86,9 @@ describe("E2E - topic", () => {
   it("GET /topics/by_title/:title", async () => {
     await topicRepository.save(topic);
 
-    const response = await supertest(app)
-    .get(`/topics/by_title/${topic.props.title}`);
+    const response = await supertest(app).get(
+      `/topics/by_title/${topic.props.title}`
+    );
 
     const responseBody = response.body;
     const responseStatus = response.status;
@@ -102,8 +103,9 @@ describe("E2E - topic", () => {
   });
 
   it("GET /topics/by_title/:title should return a status 400", async () => {
-    const response = await supertest(app)
-    .get(`/topics/by_title/${topic.props.title}`);
+    const response = await supertest(app).get(
+      `/topics/by_title/${topic.props.title}`
+    );
 
     const responseStatus = response.status;
 

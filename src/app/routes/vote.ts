@@ -77,7 +77,7 @@ voteRouteur.get("/:id", async (req: express.Request, res: express.Response) => {
   }
 });
 
-voteRouteur.get("/:userId", async (req: express.Request, res: express.Response) => {
+voteRouteur.get("/by_user_id/:userId", async (req: express.Request, res: express.Response) => {
     try {
       const vote = await getVoteByUserId.execute({
         userId: req.params.userId,

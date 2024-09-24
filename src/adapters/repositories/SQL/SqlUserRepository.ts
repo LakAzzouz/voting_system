@@ -52,6 +52,10 @@ export class SqlUserRepository implements UserRepositories {
       }
     );
 
+    if(!userModel[0][0]) {
+      return null
+    }
+
     const user = this._userMapper.toDomain(userModel[0][0]);
 
     return user;

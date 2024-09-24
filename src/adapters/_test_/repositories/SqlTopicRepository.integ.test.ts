@@ -15,8 +15,8 @@ describe("Integ - sql topic repository", () => {
   });
 
   afterEach(async () => {
-    db.raw(`TRUNCATE TABLE topics`);
-    db.raw(`TRUNCATE TABLE votes`);
+    await db.raw(`TRUNCATE TABLE topics`);
+    await db.raw(`TRUNCATE TABLE votes`);
   });
 
   it("Should save a topic and get it by id", async () => {

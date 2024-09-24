@@ -88,7 +88,7 @@ userRouteur.post("/sign_in", async (req: express.Request, res: express.Response)
 );
 
 userRouteur.use(Auth)
-userRouteur.get("/", async (req: express.Request, res: express.Response) => {
+userRouteur.get("/by_id", async (req: express.Request, res: express.Response) => {
   try {
     const authRequest = req as RequestAuth;
 
@@ -112,7 +112,7 @@ userRouteur.get("/", async (req: express.Request, res: express.Response) => {
   }
 });
 
-userRouteur.get("/", async (req: express.Request, res: express.Response) => {
+userRouteur.get("/by_email", async (req: express.Request, res: express.Response) => {
     try {
       const authRequest = req as RequestAuth;
 
@@ -136,7 +136,7 @@ userRouteur.get("/", async (req: express.Request, res: express.Response) => {
   }
 );
 
-userRouteur.patch("/update/", async (req: express.Request, res: express.Response) => {
+userRouteur.patch("/update", async (req: express.Request, res: express.Response) => {
     try {
       const authRequest = req as RequestAuth;
 
@@ -161,7 +161,7 @@ userRouteur.patch("/update/", async (req: express.Request, res: express.Response
   }
 );
 
-userRouteur.delete("/", async (req: express.Request, res: express.Response) => {
+userRouteur.delete("/delete", async (req: express.Request, res: express.Response) => {
     try {
       const authRequest = req as RequestAuth;
 
